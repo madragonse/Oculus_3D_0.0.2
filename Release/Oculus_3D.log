@@ -2,34 +2,34 @@
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(66,1): warning C4305: "argument": obcięcie z "double" do "float"
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(132,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(223,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(616,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(634,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(635,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(636,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(639,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(640,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(641,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(642,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(645,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(646,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(647,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(648,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(651,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(652,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(653,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(654,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(711,50): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(711,40): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(711,30): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(711,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(507,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(525,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(526,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(527,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(530,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(531,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(532,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(533,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(536,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(537,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(538,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(539,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(542,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(543,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(544,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(545,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(602,50): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(602,40): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(602,30): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(602,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
   Trwa generowanie kodu
-  8 of 681 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  38 of 681 functions ( 5.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    7 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   Oculus_3D.vcxproj -> C:\Users\Maciej\Documents\GitHub\Oculus_3D\Release\Oculus_3D.exe
