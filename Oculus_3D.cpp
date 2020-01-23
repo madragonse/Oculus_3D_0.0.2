@@ -358,7 +358,7 @@ public:
 
 		cp.setBasic();
 		cp.calculateLines();
-
+		cp.setResolution(20);
 		return true;
 	}
 
@@ -425,6 +425,14 @@ public:
 			cp.moveChosen(  0.0, movement, 0.0 );
 		if (GetKey('O').bHeld)
 			cp.moveChosen(  0.0, -1 * movement, 0.0 );
+
+		if (GetKey('M').bHeld)
+			cp.addResolution(1);
+
+		if (GetKey('N').bHeld)
+			cp.addResolution(-1);
+
+		cp.draw(1, 1, 1, 1, 1);
 
 		matRotY = Matrix_MakeRotationY(yr);
 		matRotX = Matrix_MakeRotationX(xr);
@@ -567,7 +575,7 @@ public:
 			vec3d p1, p2, p3, p4;
 
 
-			p1 = { 0 - 0.5, 0 - 0.5, 0 - 0.5, 1 };
+			/*p1 = { 0 - 0.5, 0 - 0.5, 0 - 0.5, 1 };
 			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0 - 0.5, 1 };
 			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0 - 0.5, 1 };
 			p4 = { 0.99 - 0.5, 0 - 0.5, 0 - 0.5, 1 };
@@ -589,7 +597,7 @@ public:
 			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0.99 - 0.5, 1 };
 			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0.99 - 0.5, 1 };
 			p4 = { 0.99 - 0.5, 0 - 0.5, 0.99 - 0.5, 1 };
-			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);
+			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);*/
 
 			
 
