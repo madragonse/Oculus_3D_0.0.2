@@ -173,12 +173,14 @@ public:
 	void choosePoint(int x)
 	{
 		wx = x % 4;
-		wy = x - x % 4;
+		wy = x/4;
+		calculateLines();
 	}
 
 	void moveChosen(float x, float y, float z)
 	{
 		points[wx][wy].move(x, y, z);
+		calculateLines();
 	}
 
 

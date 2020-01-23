@@ -369,7 +369,7 @@ public:
 		mat4x4 matTrans;
 		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, 3.0f);
 
-		
+		float movement = 1.0f * fElapsedTime;
 
 		if (GetKey(VK_UP).bHeld)
 			xr += 1.0f * fElapsedTime;
@@ -379,6 +379,52 @@ public:
 			yr += 1.0f * fElapsedTime;
 		if (GetKey(VK_RIGHT).bHeld)
 			yr -= 1.0f * fElapsedTime;
+
+		if (GetKey('V').bHeld)
+			cp.choosePoint(0);
+		if (GetKey('C').bHeld)
+			cp.choosePoint(1);
+		if (GetKey('X').bHeld)
+			cp.choosePoint(2);
+		if (GetKey('Z').bHeld)
+			cp.choosePoint(3);
+		if (GetKey('F').bHeld)
+			cp.choosePoint(4);
+		if (GetKey('D').bHeld)
+			cp.choosePoint(5);
+		if (GetKey('S').bHeld)
+			cp.choosePoint(6);
+		if (GetKey('A').bHeld)
+			cp.choosePoint(7);
+		if (GetKey('R').bHeld)
+			cp.choosePoint(8);
+		if (GetKey('E').bHeld)
+			cp.choosePoint(9);
+		if (GetKey('W').bHeld)
+			cp.choosePoint(10);
+		if (GetKey('Q').bHeld)
+			cp.choosePoint(11);
+		if (GetKey('4').bHeld)
+			cp.choosePoint(12);
+		if (GetKey('3').bHeld)
+			cp.choosePoint(13);
+		if (GetKey('2').bHeld)
+			cp.choosePoint(14);
+		if (GetKey('1').bHeld)
+			cp.choosePoint(15);
+
+		if (GetKey('I').bHeld)
+			cp.moveChosen(0.0, 0.0, movement);
+		if (GetKey('K').bHeld)
+			cp.moveChosen(0.0, 0.0, -1 * movement);
+		if (GetKey('J').bHeld)
+			cp.moveChosen( movement, 0.0, 0.0 );
+		if (GetKey('L').bHeld)
+			cp.moveChosen(-1 * movement, 0.0, 0.0 );
+		if (GetKey('U').bHeld)
+			cp.moveChosen(  0.0, movement, 0.0 );
+		if (GetKey('O').bHeld)
+			cp.moveChosen(  0.0, -1 * movement, 0.0 );
 
 		matRotY = Matrix_MakeRotationY(yr);
 		matRotX = Matrix_MakeRotationX(xr);
