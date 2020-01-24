@@ -30,6 +30,19 @@ struct line
 	vec3d p[2];
 };
 
+struct triangle
+{
+	vec3d p[3];
+	wchar_t sym;
+	short col;
+};
+
+struct mesh
+{
+	std::vector<triangle> tris;
+
+};
+
 class box
 {
 public:
@@ -161,18 +174,19 @@ private:
 	vec3d points[4][4];
 	int wx, wy;
 	int resolution;
-
 	std::vector<vec3d> bezier1[4];
 	std::vector<std::vector<vec3d>> bezier2P;
 
 public:
 	std::vector<line> lines;
+	mesh surface1;
 
 public:
 	controlPoints()
 	{
 		wx = 1;
 		wy = 1;
+		
 		setBasic();
 	}
 
@@ -195,9 +209,9 @@ public:
 public:
 	void draw(bool helpLines, bool choesen, bool surface, bool bezier1, bool bezier2)
 	{
-		std::vector<line> linesTem; 
+		std::vector<line> linesTem;
 		lines = linesTem;
-		
+
 
 		if (helpLines)
 		{
@@ -214,7 +228,16 @@ public:
 		generateBezier1(bezier1);
 		generateBezier2(bezier2);
 
-
+		line lineTem;
+		for (int j = 0; j < bezier2P.size(); j++)
+		{
+			for (int i = 1; i < bezier2P[j].size(); i++)
+			{
+				lineTem.p[0] = bezier2P[j][i - 1];
+				lineTem.p[1] = bezier2P[j][i];
+				lines.push_back(lineTem);
+			}
+		}
 
 	}
 
@@ -249,18 +272,12 @@ public:
 			bezier1[j] = pointsTem;
 
 			if(draw)
-				for (int i = 0; i < bezier2P[0].size(); i++)
-				{
-					lineTem.p[0] = bezier2P[1][i - 1];
-					lineTem.p[1] = bezier2P[1][i];
-					//lines.push_back(lineTem);
-				}
-			/*for (int i = 1; i < pointsTem.size(); i++)
+			for (int i = 1; i < pointsTem.size(); i++)
 			{
 				lineTem.p[0] = pointsTem[i - 1];
 				lineTem.p[1] = pointsTem[i];
 				lines.push_back(lineTem);
-			}*/
+			}
 		}
 	}
 
@@ -309,6 +326,38 @@ public:
 	void moveChosen(float x, float y, float z)
 	{
 		points[wx][wy].move(x, y, z);
+	}
+
+	void generateMesh()
+	{
+
+		triangle triangleTem;
+		mesh emp;
+		surface1 = emp;
+		for (int j = 0; j < bezier2P.size()- 1; j++)
+		{
+			for (int i = 1; i < bezier2P[j].size(); i++)
+			{
+				triangleTem.p[2] = bezier2P[j][i - 1];
+				triangleTem.p[1] = bezier2P[j][i];
+				triangleTem.p[0] = bezier2P[j + 1][i-1];
+
+				surface1.tris.push_back(triangleTem);
+			}
+		}
+
+		for (int j = 0; j < bezier2P.size() - 1; j++)
+		{
+			for (int i = 1; i < bezier2P[j].size(); i++)
+			{
+				triangleTem.p[2] = bezier2P[j+1][i];
+				triangleTem.p[1] = bezier2P[j+1][i-1];
+				triangleTem.p[0] = bezier2P[j][i];
+
+				surface1.tris.push_back(triangleTem);
+			}
+		}
+
 	}
 
 
