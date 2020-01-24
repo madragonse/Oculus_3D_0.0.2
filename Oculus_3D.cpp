@@ -50,13 +50,127 @@ Last Updated: 14/08/2018
 
 
 #include "olcConsoleGameEngine.h"
+#include <iostream>
 #include <fstream>
+#include <cstring>
 #include <strstream>
 #include <algorithm>
+#include <string>
+#include <sstream> 
 #include "nurbs.h"
 using namespace std;
 
+class saveF
+{
+public:
+	vec3d data[4][4];
+	saveF()
+	{
+		
+	}
+};
 
+void save(controlPoints s)
+{
+	ofstream myfile;
+	myfile.open("example.txt");
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+
+			myfile << (int)(s.points[i][j].x * 10000);
+			myfile << ' ';
+			myfile << (int)(s.points[i][j].y * 10000);
+			myfile << ' ';
+			myfile << (int)(s.points[i][j].z * 10000);
+			myfile << ' ';
+		}
+	}
+	myfile.close();
+}
+
+void load(controlPoints &l)
+{
+	stringstream geek("2");
+	int temi;
+	std::string linia;
+	ifstream myfile("example.txt" , std::ios::in);
+	int value;
+	int i = 0;
+
+	while (!myfile.eof())
+	{
+		myfile >> value;
+		l.points[i / 4][i % 4].x = float(value/10000.0);
+		myfile >> value;
+		l.points[i / 4][i % 4].y = float(value / 10000.0);
+   		myfile >> value;
+		l.points[i / 4][i % 4].z = float(value / 10000.0);
+		//l->points[i / 4][i % 4].w = 1.0;
+		i++;
+
+		
+	}
+	i++;
+
+	l.choosePoint(0);
+	l.setResolution(10);
+
+	/*for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].x = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].x = temi / 10000.0f;
+			}
+
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].y = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].y = temi / 10000.0f;
+			}
+
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].z = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].z = temi / 10000.0f;
+			}
+		}
+	}*/
+	
+
+}
 
 
 
@@ -329,6 +443,55 @@ public:
 		
 		mat4x4 matRotZ, matRotX, matRotY;
 		mat4x4 matTrans;
+
+
+		if (GetKey(VK_F7).bHeld)
+		{
+			save(cp);
+		}
+
+		if (GetKey(VK_F8).bHeld)
+		{
+			//shared_ptr<controlPoints> cps = make_shared<controlPoints>(cp);
+			
+			load(cp);
+		
+		}
+
+
+			/*if (GetKey(VK_F7).bHeld)
+			{
+				fstream file("ex.bin", ios::binary | ios::in | ios::out);
+				saveF ss;
+				for (int i = 0; i < 4; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						ss.data[i][j] = cp.points[i][j];
+					}
+				}
+
+				file.write((char*)&ss, sizeof(ss));
+				file.close();
+
+			}
+
+			if (GetKey(VK_F8).bHeld)
+			{
+				fstream file("ex.bin", ios::binary | ios::in | ios::out );
+				saveF ss;
+				file.seekg(0);
+				file.read((char*)&ss, sizeof(ss));
+				for (int i = 0; i < 4; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						cp.points[i][j] = ss.data[i][j];
+					}
+				}
+				file.close();
+			}*/
+
 		
 
 		if (GetKey(VK_UP).bHeld)

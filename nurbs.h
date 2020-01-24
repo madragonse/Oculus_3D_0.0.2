@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+
 
 template <typename T>
 std::vector<T> operator+(const std::vector<T>& A, const std::vector<T>& B)
@@ -169,9 +171,9 @@ std::vector<vec3d> bezier(int s, vec3d a, vec3d b, vec3d c, vec3d d)
 
 class controlPoints
 {
-
-private:
+public:
 	vec3d points[4][4];
+private:
 	int wx, wy;
 	int resolution;
 	std::vector<vec3d> bezier1[4];
@@ -227,10 +229,6 @@ public:
 
 		generateBezier1(bezier1);
 		generateBezier2(bezier2);
-
-
-
-
 	}
 
 	void calculateLines()
@@ -363,6 +361,7 @@ public:
 		}
 	}
 
+	
 };
 
 
