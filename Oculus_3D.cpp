@@ -80,7 +80,9 @@ public:
 
 private:
 	controlPoints cp;
-	
+	bool l, c, b1, b2, s, change;
+	float timeChangeBuffer;
+
 	mesh meshSurface;
 	mat4x4 matProj;	// Matrix that converts from view space to screen space
 	vec3d vCamera;	// Location of camera in world space
@@ -313,12 +315,14 @@ public:
 		cp.setBasic();
 		cp.calculateLines();
 		cp.setResolution(20);
+		change = 0;
+		l = 1; c = 1; b1 = 1; b2 = 1; s = 1;
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-
+		
 		mat4x4 matRotZ, matRotX, matRotY;
 		mat4x4 matTrans;
 		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, 3.0f);
@@ -386,7 +390,62 @@ public:
 		if (GetKey('N').bHeld)
 			cp.addResolution(-1);
 
-		cp.draw(0, 1, 0, 0, 0);
+		if (GetKey(VK_F1).bHeld && change == 0)
+		{
+			change = 1;
+			if (l == 0)
+				l = 1;
+			else
+				l = 0;
+		}
+		else
+		if (GetKey(VK_F2).bHeld && change == 0)
+		{
+			change = 1;
+			if (c == 0)
+				c = 1;
+			else
+				c = 0;
+		}
+		else
+		if (GetKey(VK_F3).bHeld && change == 0)
+		{
+			change = 1;
+			if (b1 == 0)
+				b1 = 1;
+			else
+				b1 = 0;
+		}
+		else
+		if (GetKey(VK_F4).bHeld && change == 0)
+		{
+			change = 1;
+			if (b2 == 0)
+				b2 = 1;
+			else
+				b2 = 0;
+		}
+		else
+		if (GetKey(VK_F5).bHeld && change == 0)
+		{
+			change = 1;
+			if (s == 0)
+				s = 1;
+			else
+				s = 0;
+		}
+		else
+		{
+			timeChangeBuffer += fElapsedTime;
+			if (timeChangeBuffer > 0.4)
+			{
+				change = 0;
+				timeChangeBuffer = 0;
+			}
+		}
+
+			
+		cp.draw( l, c, b1, b2);
 
 		matRotY = Matrix_MakeRotationY(yr);
 		matRotX = Matrix_MakeRotationX(xr);
@@ -407,105 +466,11 @@ public:
 
 		
 
+		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
+
 		
-		if(1)
-		{
-		// Clear Screen
-			Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
-			std::vector<line> lineShape;
-			std::vector<line> linesToDraw;
-			line lineTem;
-
-			std::vector<line> linesTem;
-
-			vec3d p1, p2, p3, p4;
-
-
-			/*p1 = { 0 - 0.5, 0 - 0.5, 0 - 0.5, 1 };
-			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0 - 0.5, 1 };
-			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0 - 0.5, 1 };
-			p4 = { 0.99 - 0.5, 0 - 0.5, 0 - 0.5, 1 };
-			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);
-
-			p1 = { 0 - 0.5, 0 - 0.5, 0.33 - 0.5, 1 };
-			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0.33 - 0.5, 1 };
-			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0.33 - 0.5, 1 };
-			p4 = { 0.99 - 0.5, 0 - 0.5, 0.33 - 0.5, 1 };
-			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);
-
-			p1 = { 0 - 0.5, 0 - 0.5, 0.66 - 0.5, 1 };
-			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0.66 - 0.5, 1 };
-			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0.66 - 0.5, 1 };
-			p4 = { 0.99 - 0.5, 0 - 0.5, 0.66 - 0.5, 1 };
-			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);
-
-			p1 = { 0 - 0.5, 0 - 0.5, 0.99 - 0.5, 1 };
-			p2 = { 0.33 - 0.5, 0.66 - 0.5, 0.99 - 0.5, 1 };
-			p3 = { 0.66 - 0.5, 0.99 - 0.5, 0.99 - 0.5, 1 };
-			p4 = { 0.99 - 0.5, 0 - 0.5, 0.99 - 0.5, 1 };
-			lineShape = lineShape + bezier(1000, p1, p2, p3, p4);*/
-
-			
-
-			lineShape = cp.lines;
-			
-			for (auto lin : lineShape)
-			{
-				line linProjected, linTransformed, linViewed;
-
-				// World Matrix Transform
-				linTransformed.p[0] = Matrix_MultiplyVector(matWorld, lin.p[0]);
-				linTransformed.p[1] = Matrix_MultiplyVector(matWorld, lin.p[1]);
-
-				// Convert World Space --> View Space
-				linViewed.p[0] = Matrix_MultiplyVector(matView, linTransformed.p[0]);
-				linViewed.p[1] = Matrix_MultiplyVector(matView, linTransformed.p[1]);
-
-
-
-				// Project lines from 3D --> 2D
-				linProjected.p[0] = Matrix_MultiplyVector(matProj, linViewed.p[0]);
-				linProjected.p[1] = Matrix_MultiplyVector(matProj, linViewed.p[1]);
-
-
-				// Scale into view, we moved the normalising into cartesian space
-				// out of the matrix
-				linProjected.p[0] = Vector_Div(linProjected.p[0], linProjected.p[0].w);
-				linProjected.p[1] = Vector_Div(linProjected.p[1], linProjected.p[1].w);
-
-
-				// X/Y are inverted
-				linProjected.p[0].x *= -1.0f;
-				linProjected.p[1].x *= -1.0f;
-				linProjected.p[0].y *= -1.0f;
-				linProjected.p[1].y *= -1.0f;
-
-				// Offset verts into visible normalised space
-				vec3d vOffsetView = { 1,1,0 }; // to the middle of the screen
-				linProjected.p[0] = Vector_Add(linProjected.p[0], vOffsetView);
-				linProjected.p[1] = Vector_Add(linProjected.p[1], vOffsetView);
-				linProjected.p[0].x *= 0.5f * (float)ScreenWidth();
-				linProjected.p[0].y *= 0.5f * (float)ScreenHeight();
-				linProjected.p[1].x *= 0.5f * (float)ScreenWidth();
-				linProjected.p[1].y *= 0.5f * (float)ScreenHeight();
-
-
-				// Store lines for drawing
-				linesToDraw.push_back(linProjected);
-
-
-			}
-
-			for (auto& t : linesToDraw)
-			{
-				//FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
-				DrawLine(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, PIXEL_SOLID, FG_WHITE);
-			}
-
-
-		}
 		
-		if (1)
+		if (s)
 		{
 			// Store triagles for rastering later
 			vector<triangle> vecTrianglesToRaster;
@@ -608,7 +573,7 @@ public:
 				});
 
 			// Clear Screen
-			Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
+			//Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
 			for (auto& t : vecTrianglesToRaster)
 			{
@@ -617,6 +582,79 @@ public:
 			}
 		}
 
+		if (1)
+		{
+			// Clear Screen
+
+			std::vector<line> lineShape;
+			std::vector<line> linesToDraw;
+			line lineTem;
+
+			std::vector<line> linesTem;
+
+			vec3d p1, p2, p3, p4;
+
+
+
+
+
+			lineShape = cp.lines;
+
+			for (auto lin : lineShape)
+			{
+				line linProjected, linTransformed, linViewed;
+
+				// World Matrix Transform
+				linTransformed.p[0] = Matrix_MultiplyVector(matWorld, lin.p[0]);
+				linTransformed.p[1] = Matrix_MultiplyVector(matWorld, lin.p[1]);
+
+				// Convert World Space --> View Space
+				linViewed.p[0] = Matrix_MultiplyVector(matView, linTransformed.p[0]);
+				linViewed.p[1] = Matrix_MultiplyVector(matView, linTransformed.p[1]);
+
+
+
+				// Project lines from 3D --> 2D
+				linProjected.p[0] = Matrix_MultiplyVector(matProj, linViewed.p[0]);
+				linProjected.p[1] = Matrix_MultiplyVector(matProj, linViewed.p[1]);
+
+
+				// Scale into view, we moved the normalising into cartesian space
+				// out of the matrix
+				linProjected.p[0] = Vector_Div(linProjected.p[0], linProjected.p[0].w);
+				linProjected.p[1] = Vector_Div(linProjected.p[1], linProjected.p[1].w);
+
+
+				// X/Y are inverted
+				linProjected.p[0].x *= -1.0f;
+				linProjected.p[1].x *= -1.0f;
+				linProjected.p[0].y *= -1.0f;
+				linProjected.p[1].y *= -1.0f;
+
+				// Offset verts into visible normalised space
+				vec3d vOffsetView = { 1,1,0 }; // to the middle of the screen
+				linProjected.p[0] = Vector_Add(linProjected.p[0], vOffsetView);
+				linProjected.p[1] = Vector_Add(linProjected.p[1], vOffsetView);
+				linProjected.p[0].x *= 0.5f * (float)ScreenWidth();
+				linProjected.p[0].y *= 0.5f * (float)ScreenHeight();
+				linProjected.p[1].x *= 0.5f * (float)ScreenWidth();
+				linProjected.p[1].y *= 0.5f * (float)ScreenHeight();
+
+
+				// Store lines for drawing
+				linesToDraw.push_back(linProjected);
+
+
+			}
+
+			for (auto& t : linesToDraw)
+			{
+				//FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
+				DrawLine(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, PIXEL_SOLID, FG_GREEN);
+			}
+
+
+		}
 
 		return true;
 	}

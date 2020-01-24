@@ -207,7 +207,7 @@ public:
 	}
 
 public:
-	void draw(bool helpLines, bool choesen, bool surface, bool bezier1, bool bezier2)
+	void draw(bool helpLines, bool choesen, bool bezier1, bool bezier2)
 	{
 		std::vector<line> linesTem;
 		lines = linesTem;
@@ -228,16 +228,8 @@ public:
 		generateBezier1(bezier1);
 		generateBezier2(bezier2);
 
-		line lineTem;
-		for (int j = 0; j < bezier2P.size(); j++)
-		{
-			for (int i = 1; i < bezier2P[j].size(); i++)
-			{
-				lineTem.p[0] = bezier2P[j][i - 1];
-				lineTem.p[1] = bezier2P[j][i];
-				lines.push_back(lineTem);
-			}
-		}
+
+
 
 	}
 
