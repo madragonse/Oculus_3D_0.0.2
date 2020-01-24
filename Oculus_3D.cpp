@@ -74,20 +74,22 @@ class olcEngine3D : public olcConsoleGameEngine
 public:
 	olcEngine3D()
 	{
-		m_sAppName = L"3D Demo";
+		m_sAppName = L"Oculus_3D";
 	}
 
 
 private:
 	controlPoints cp;
-	bool l, c, b1, b2, s, change;
+	controlPoints cp2;
+	bool l, c, b1, b2, s, change, ud;
 	float timeChangeBuffer;
+	float zoom;
 
 	mesh meshSurface;
 	mat4x4 matProj;	// Matrix that converts from view space to screen space
 	vec3d vCamera;	// Location of camera in world space
 	vec3d vLookDir;	// Direction vector along the direction camera points
-	float fYaw;		// FPS Camera rotation in XZ plane
+	float fYaw;		
 	float xr = 0, yr = 0, zr = 0;	// Spins World transform
 
 	vec3d Matrix_MultiplyVector(mat4x4& m, vec3d& i)
@@ -315,8 +317,10 @@ public:
 		cp.setBasic();
 		cp.calculateLines();
 		cp.setResolution(20);
+		cp2 = cp;
 		change = 0;
-		l = 1; c = 1; b1 = 1; b2 = 1; s = 1;
+		l = 1; c = 1; b1 = 1; b2 = 1; s = 1; ud = 1;
+		zoom = 3.0;
 		return true;
 	}
 
@@ -325,9 +329,18 @@ public:
 		
 		mat4x4 matRotZ, matRotX, matRotY;
 		mat4x4 matTrans;
-		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, 3.0f);
+		
+
+		if (GetKey(VK_UP).bHeld)
+			xr += 1.0f * fElapsedTime;
+		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, zoom);
 
 		float movement = 1.0f * fElapsedTime;
+
+		if (GetKey(VK_F12).bHeld)
+			zoom -= movement;
+		if (GetKey(VK_F11).bHeld)
+			zoom += movement;
 
 		if (GetKey(VK_UP).bHeld)
 			xr += 1.0f * fElapsedTime;
@@ -435,6 +448,33 @@ public:
 				s = 0;
 		}
 		else
+		if (GetKey(VK_SPACE).bHeld && change == 0)
+		{
+			change = 1;
+			if (ud == 0)
+			{
+				cp.upsideDown();
+				ud = 1;
+			}
+			else
+			{
+				cp.upsideDown();
+				ud = 0;
+			}
+		}
+		else
+		if (GetKey(VK_F9).bHeld)
+		{
+			change = 1;
+			cp2 = cp;
+		}
+		else
+		if (GetKey(VK_F10).bHeld)
+		{
+			change = 1;
+			cp = cp2;
+		}
+		else
 		{
 			timeChangeBuffer += fElapsedTime;
 			if (timeChangeBuffer > 0.4)
@@ -495,6 +535,124 @@ public:
 
 				// Take cross product of lines to get normal to triangle surface
 				normal = Vector_CrossProduct(line1, line2);
+				/*normal.x *= -1;
+				normal.y *= -1;
+				normal.z *= -1;*/
+
+				// Normalise a normal
+				normal = Vector_Normalise(normal);
+
+				// Get ray from triangle to camera
+				vec3d vCameraRay = Vector_Sub(triTransformed.p[0], vCamera);
+
+				// If ray is aligned with normal, then triangle is visible
+				if (Vector_DotProduct(normal, vCameraRay) < 0.0f)
+				{
+					// Illumination
+					vec3d light_direction = { -0.5f, 0.5f, -0.5f };
+					light_direction = Vector_Normalise(light_direction);
+
+					// How "aligned" are light direction and triangle surface normal?
+					float dp = max(0.1f, Vector_DotProduct(light_direction, normal));
+
+					// Choose console colours as required (much easier with RGB)
+					CHAR_INFO c = GetColour(dp);
+					triTransformed.col = c.Attributes;
+					triTransformed.sym = c.Char.UnicodeChar;
+
+					// Convert World Space --> View Space
+					triViewed.p[0] = Matrix_MultiplyVector(matView, triTransformed.p[0]);
+					triViewed.p[1] = Matrix_MultiplyVector(matView, triTransformed.p[1]);
+					triViewed.p[2] = Matrix_MultiplyVector(matView, triTransformed.p[2]);
+					triViewed.sym = triTransformed.sym;
+					triViewed.col = triTransformed.col;
+
+
+					// Project triangles from 3D --> 2D
+					triProjected.p[0] = Matrix_MultiplyVector(matProj, triViewed.p[0]);
+					triProjected.p[1] = Matrix_MultiplyVector(matProj, triViewed.p[1]);
+					triProjected.p[2] = Matrix_MultiplyVector(matProj, triViewed.p[2]);
+					triProjected.col = triViewed.col;
+					triProjected.sym = triViewed.sym;
+
+					// Scale into view, we moved the normalising into cartesian space
+					// out of the matrix
+					triProjected.p[0] = Vector_Div(triProjected.p[0], triProjected.p[0].w);
+					triProjected.p[1] = Vector_Div(triProjected.p[1], triProjected.p[1].w);
+					triProjected.p[2] = Vector_Div(triProjected.p[2], triProjected.p[2].w);
+
+					// X/Y are inverted
+					triProjected.p[0].x *= -1.0f;
+					triProjected.p[1].x *= -1.0f;
+					triProjected.p[2].x *= -1.0f;
+					triProjected.p[0].y *= -1.0f;
+					triProjected.p[1].y *= -1.0f;
+					triProjected.p[2].y *= -1.0f;
+
+					// Offset verts into visible normalised space
+					vec3d vOffsetView = { 1,1,0 }; // to the middle of the screen
+					triProjected.p[0] = Vector_Add(triProjected.p[0], vOffsetView);
+					triProjected.p[1] = Vector_Add(triProjected.p[1], vOffsetView);
+					triProjected.p[2] = Vector_Add(triProjected.p[2], vOffsetView);
+					triProjected.p[0].x *= 0.5f * (float)ScreenWidth();
+					triProjected.p[0].y *= 0.5f * (float)ScreenHeight();
+					triProjected.p[1].x *= 0.5f * (float)ScreenWidth();
+					triProjected.p[1].y *= 0.5f * (float)ScreenHeight();
+					triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
+					triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
+
+					// Store triangle for sorting
+					vecTrianglesToRaster.push_back(triProjected);
+
+				}
+			}
+
+			// Sort triangles from back to front
+			sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle& t1, triangle& t2)
+				{
+					float z1 = (t1.p[0].z + t1.p[1].z + t1.p[2].z) / 3.0f;
+					float z2 = (t2.p[0].z + t2.p[1].z + t2.p[2].z) / 3.0f;
+					return z1 > z2;
+				});
+
+			// Clear Screen
+			//Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
+
+			for (auto& t : vecTrianglesToRaster)
+			{
+				FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
+				//DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_WHITE);
+			}
+		}
+
+		if (s)
+		{
+			// Store triagles for rastering later
+			vector<triangle> vecTrianglesToRaster;
+			// Draw Triangles
+			cp.generateMesh();
+			meshSurface = cp2.surface1;
+			for (auto tri : meshSurface.tris)
+			{
+				triangle triProjected, triTransformed, triViewed;
+
+				// World Matrix Transform
+				triTransformed.p[0] = Matrix_MultiplyVector(matWorld, tri.p[0]);
+				triTransformed.p[1] = Matrix_MultiplyVector(matWorld, tri.p[1]);
+				triTransformed.p[2] = Matrix_MultiplyVector(matWorld, tri.p[2]);
+
+				// Calculate triangle Normal
+				vec3d normal, line1, line2;
+
+				// Get lines either side of triangle
+				line1 = Vector_Sub(triTransformed.p[1], triTransformed.p[0]);
+				line2 = Vector_Sub(triTransformed.p[2], triTransformed.p[0]);
+
+				// Take cross product of lines to get normal to triangle surface
+				normal = Vector_CrossProduct(line1, line2);
+				normal.x *= -1;
+				normal.y *= -1;
+				normal.z *= -1;
 
 				// Normalise a normal
 				normal = Vector_Normalise(normal);
