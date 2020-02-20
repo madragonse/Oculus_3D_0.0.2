@@ -8,20 +8,21 @@ C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(327,21): warning C4
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(329,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(339,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(341,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(693,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(808,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(881,50): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(881,40): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(881,30): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(881,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(96,6): warning C4101: "temi": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,50): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,40): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,30): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
   Oculus_3D.vcxproj -> C:\Users\Maciej\Documents\GitHub\Oculus_3D\Debug\Oculus_3D.exe

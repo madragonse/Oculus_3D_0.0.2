@@ -60,6 +60,15 @@ Last Updated: 14/08/2018
 #include "nurbs.h"
 using namespace std;
 
+class saveF
+{
+public:
+	vec3d data[4][4];
+	saveF()
+	{
+		
+	}
+};
 
 void save(controlPoints s)
 {
@@ -83,7 +92,9 @@ void save(controlPoints s)
 
 void load(controlPoints &l)
 {
-
+	stringstream geek("2");
+	int temi;
+	std::string linia;
 	ifstream myfile("example.txt" , std::ios::in);
 	int value;
 	int i = 0;
@@ -98,18 +109,65 @@ void load(controlPoints &l)
 		l.points[i / 4][i % 4].z = float(value / 10000.0);
 		//l->points[i / 4][i % 4].w = 1.0;
 		i++;
-		if (i == 16)
-		{
-			break;
-		}
+
 		
 	}
 	i++;
 
-	/*l.choosePoint(0);
-	l.setResolution(10);*/
+	l.choosePoint(0);
+	l.setResolution(10);
 
+	/*for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].x = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].x = temi / 10000.0f;
+			}
 
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].y = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].y = temi / 10000.0f;
+			}
+
+			getline(myfile, linia);
+			if (linia[0] == '-')
+			{
+				linia.erase(0, 1);
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].z = temi / 10000.0f;
+			}
+			else
+			{
+				geek << linia << "  ";
+				geek >> temi;
+				l.points[i][j].z = temi / 10000.0f;
+			}
+		}
+	}*/
 	
 
 }
@@ -327,6 +385,7 @@ private:
 
 
 
+	// Taken From Command Line Webcam Video
 	CHAR_INFO GetColour(float lum)
 	{
 		short bg_col, fg_col;
@@ -393,11 +452,45 @@ public:
 
 		if (GetKey(VK_F8).bHeld)
 		{
+			//shared_ptr<controlPoints> cps = make_shared<controlPoints>(cp);
 			
 			load(cp);
 		
 		}
 
+
+			/*if (GetKey(VK_F7).bHeld)
+			{
+				fstream file("ex.bin", ios::binary | ios::in | ios::out);
+				saveF ss;
+				for (int i = 0; i < 4; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						ss.data[i][j] = cp.points[i][j];
+					}
+				}
+
+				file.write((char*)&ss, sizeof(ss));
+				file.close();
+
+			}
+
+			if (GetKey(VK_F8).bHeld)
+			{
+				fstream file("ex.bin", ios::binary | ios::in | ios::out );
+				saveF ss;
+				file.seekg(0);
+				file.read((char*)&ss, sizeof(ss));
+				for (int i = 0; i < 4; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						cp.points[i][j] = ss.data[i][j];
+					}
+				}
+				file.close();
+			}*/
 
 		
 
