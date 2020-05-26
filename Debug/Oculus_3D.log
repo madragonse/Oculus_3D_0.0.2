@@ -1,14 +1,28 @@
 ﻿  Oculus_3D.cpp
-c:\program files (x86)\windows kits\10\include\10.0.10240.0\um\combaseapi.h(234): error C2760: błąd składniowy: nieoczekiwany token „identyfikator”, oczekiwano: „specyfikator typu”
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(81): warning C4305: "argument": obcięcie z "double" do "float"
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(198): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(265): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(280): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(288): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(327): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(329): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(339): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\nurbs.h(341): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\oculus_3d.cpp(786): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\oculus_3d.cpp(901): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-c:\users\maciej\documents\github\oculus_3d\oculus_3d\oculus_3d.cpp(974): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(81,1): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(198,1): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(265,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(280,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(288,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(327,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(329,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(339,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\nurbs.h(341,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(96,6): warning C4101: "temi": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(786,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,64): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,54): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,44): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,34): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(901,24): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,50): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,40): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,30): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\Maciej\Documents\GitHub\Oculus_3D\Oculus_3D\Oculus_3D.cpp(974,20): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+  Oculus_3D.vcxproj -> C:\Users\Maciej\Documents\GitHub\Oculus_3D\Debug\Oculus_3D.exe
