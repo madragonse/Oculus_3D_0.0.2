@@ -35,6 +35,7 @@ struct line
 struct triangle
 {
 	vec3d p[3];
+	// !!!
 	wchar_t sym;
 	short col;
 };
@@ -151,18 +152,6 @@ std::vector<vec3d> bezier(int s, vec3d a, vec3d b, vec3d c, vec3d d)
 		points.push_back({ xtem, ytem, ztem, 1 });
 	}
 	points.push_back(d);
-
-
-
-
-
-	/*for (int i = 1; i < points.size(); i++)
-	{
-		teml.p[0] = points[i - 1];
-		teml.p[1] = points[i];
-		lines.push_back(teml);
-	}*/
-
 
 
 
@@ -317,8 +306,8 @@ public:
 	{
 		points[wx][wy].move(x, y, z);
 	}
-
-	void generateMesh()
+	// !!!
+	void generateMesh() 
 	{
 
 		triangle triangleTem;

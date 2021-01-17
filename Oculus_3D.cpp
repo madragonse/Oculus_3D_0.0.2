@@ -60,15 +60,6 @@ Last Updated: 14/08/2018
 #include "nurbs.h"
 using namespace std;
 
-class saveF
-{
-public:
-	vec3d data[4][4];
-	saveF()
-	{
-		
-	}
-};
 
 void save(controlPoints s)
 {
@@ -116,72 +107,12 @@ void load(controlPoints &l)
 
 	l.choosePoint(0);
 	l.setResolution(10);
-
-	/*for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			
-			getline(myfile, linia);
-			if (linia[0] == '-')
-			{
-				linia.erase(0, 1);
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].x = temi / 10000.0f;
-			}
-			else
-			{
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].x = temi / 10000.0f;
-			}
-
-			getline(myfile, linia);
-			if (linia[0] == '-')
-			{
-				linia.erase(0, 1);
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].y = temi / 10000.0f;
-			}
-			else
-			{
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].y = temi / 10000.0f;
-			}
-
-			getline(myfile, linia);
-			if (linia[0] == '-')
-			{
-				linia.erase(0, 1);
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].z = temi / 10000.0f;
-			}
-			else
-			{
-				geek << linia << "  ";
-				geek >> temi;
-				l.points[i][j].z = temi / 10000.0f;
-			}
-		}
-	}*/
-	
-
 }
-
-
 
 struct mat4x4
 {
 	float m[4][4] = { 0 };
 };
-
-
-
-
 
 class olcEngine3D : public olcConsoleGameEngine
 {
@@ -193,6 +124,7 @@ public:
 
 
 private:
+	controlPoints temCp;
 	controlPoints cp;
 	controlPoints cp2;
 	bool l, c, b1, b2, s, change, ud;
@@ -384,9 +316,8 @@ private:
 
 
 
-
-	// Taken From Command Line Webcam Video
-	CHAR_INFO GetColour(float lum)
+	// !!!
+	CHAR_INFO GetColour(float lum) 
 	{
 		short bg_col, fg_col;
 		wchar_t sym;
@@ -422,10 +353,7 @@ private:
 public:
 	bool OnUserCreate() override
 	{
-		// Load object file
-		//meshCube.LoadFromObjectFile("ball.txt");
 
-		// Projection Matrix
 		matProj = Matrix_MakeProjection(90.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f);
 
 		cp.setBasic();
@@ -457,45 +385,8 @@ public:
 			load(cp);
 		
 		}
-
-
-			/*if (GetKey(VK_F7).bHeld)
-			{
-				fstream file("ex.bin", ios::binary | ios::in | ios::out);
-				saveF ss;
-				for (int i = 0; i < 4; i++)
-				{
-					for (int j = 0; j < 4; j++)
-					{
-						ss.data[i][j] = cp.points[i][j];
-					}
-				}
-
-				file.write((char*)&ss, sizeof(ss));
-				file.close();
-
-			}
-
-			if (GetKey(VK_F8).bHeld)
-			{
-				fstream file("ex.bin", ios::binary | ios::in | ios::out );
-				saveF ss;
-				file.seekg(0);
-				file.read((char*)&ss, sizeof(ss));
-				for (int i = 0; i < 4; i++)
-				{
-					for (int j = 0; j < 4; j++)
-					{
-						cp.points[i][j] = ss.data[i][j];
-					}
-				}
-				file.close();
-			}*/
-
 		
 
-		if (GetKey(VK_UP).bHeld)
-			xr += 1.0f * fElapsedTime;
 		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, zoom);
 
 		float movement = 1.0f * fElapsedTime;
@@ -635,7 +526,9 @@ public:
 		if (GetKey(VK_F10).bHeld)
 		{
 			change = 1;
+			temCp = cp;
 			cp = cp2;
+			cp2 = temCp;
 		}
 		else
 		{
@@ -647,7 +540,6 @@ public:
 			}
 		}
 
-			
 		cp.draw( l, c, b1, b2);
 
 		matRotY = Matrix_MakeRotationY(yr);
@@ -664,19 +556,17 @@ public:
 		vec3d vTarget = { 0,0,1 };
 		vCamera = { 0,0,0 };
 		mat4x4 matCamera = Matrix_PointAt(vCamera, vTarget, vUp);
+
 		// Make view matrix from camera
 		mat4x4 matView = Matrix_QuickInverse(matCamera);
 
-		
-
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
-		
-		
 		if (s)
 		{
 			// Store triagles for rastering later
 			vector<triangle> vecTrianglesToRaster;
+
 			// Draw Triangles
 			cp.generateMesh();
 			meshSurface = cp.surface1;
@@ -718,6 +608,7 @@ public:
 					// How "aligned" are light direction and triangle surface normal?
 					float dp = max(0.1f, Vector_DotProduct(light_direction, normal));
 
+					// !!!
 					// Choose console colours as required (much easier with RGB)
 					CHAR_INFO c = GetColour(dp);
 					triTransformed.col = c.Attributes;
@@ -752,6 +643,7 @@ public:
 					triProjected.p[1].y *= -1.0f;
 					triProjected.p[2].y *= -1.0f;
 
+					// !!!
 					// Offset verts into visible normalised space
 					vec3d vOffsetView = { 1,1,0 }; // to the middle of the screen
 					triProjected.p[0] = Vector_Add(triProjected.p[0], vOffsetView);
@@ -772,14 +664,12 @@ public:
 
 			// Sort triangles from back to front
 			sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle& t1, triangle& t2)
-				{
-					float z1 = (t1.p[0].z + t1.p[1].z + t1.p[2].z) / 3.0f;
-					float z2 = (t2.p[0].z + t2.p[1].z + t2.p[2].z) / 3.0f;
-					return z1 > z2;
-				});
+			{
+				float z1 = (t1.p[0].z + t1.p[1].z + t1.p[2].z) / 3.0f;
+				float z2 = (t2.p[0].z + t2.p[1].z + t2.p[2].z) / 3.0f;
+				return z1 > z2;
+			});
 
-			// Clear Screen
-			//Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
 			for (auto& t : vecTrianglesToRaster)
 			{
@@ -793,7 +683,6 @@ public:
 			// Store triagles for rastering later
 			vector<triangle> vecTrianglesToRaster;
 			// Draw Triangles
-			cp.generateMesh();
 			meshSurface = cp2.surface1;
 			for (auto tri : meshSurface.tris)
 			{
@@ -893,20 +782,17 @@ public:
 					return z1 > z2;
 				});
 
-			// Clear Screen
-			//Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
 			for (auto& t : vecTrianglesToRaster)
 			{
+				// !!!
 				FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
-				//DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_WHITE);
 			}
 		}
 
 		if (1)
 		{
 			// Clear Screen
-
 			std::vector<line> lineShape;
 			std::vector<line> linesToDraw;
 			line lineTem;
@@ -970,7 +856,7 @@ public:
 
 			for (auto& t : linesToDraw)
 			{
-				//FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
+				// !!!
 				DrawLine(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, PIXEL_SOLID, FG_GREEN);
 			}
 
